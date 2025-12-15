@@ -1,0 +1,38 @@
+// {
+//   "compilerOptions": {
+//     "target": "es5",
+//     "module": "esnext",
+//     "baseUrl": "./",
+//     "moduleResolution": "node",
+//     "paths": {
+//       "@/*": [
+//         "src/*"
+//       ]
+//     },
+//     "lib": [
+//       "esnext",
+//       "dom",
+//       "dom.iterable",
+//       "scripthost"
+//     ]
+//   }
+// }
+
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "esnext",
+    "baseUrl": "./",
+    "moduleResolution": "node",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
+    "allowJs": true, // 允许识别JS文件
+    "strict": false, // 关闭严格模式（可选，根据项目需求）
+    "resolveJsonModule": true, // 支持导入JSON文件
+    "skipLibCheck": true // 跳过库文件类型检查
+  },
+  "include": ["src/**/*"], // 只检查src目录下的文件（减少无关报错）
+  "exclude": ["node_modules", "dist"] // 排除无需检查的目录
+}
