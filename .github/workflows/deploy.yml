@@ -1,27 +1,29 @@
-name: Deploy GitHub Pages
+name: Deploy Vue App to GitHub Pages
 on:
   push:
     branches: [main]
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          persist-credentials: false
-      
-      - uses: actions/setup-node@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
-      
-      - run: npm install
-      - run: npm run build
-      
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          folder: dist
-          branch: gh-pages
-          clean: true
-          token: ${{ secrets.GITHUB_TOKEN }}  # 显式添加Token
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          force_orphan: true  # 强制创建干净的gh-pages分支
