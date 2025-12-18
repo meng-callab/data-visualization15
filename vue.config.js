@@ -3,11 +3,12 @@ module.exports = defineConfig({
   transpileDependencies: true,
   // 新增：代理配置（解决跨域 + 后端地址映射）
 
- // 新增这行：GitHub Pages部署关键配置
-  publicPath: process.env.NODE_ENV === 'production'
-    ? '/data-visualization-project/'  // 你的GitHub仓库名
-    : '/',  // 开发环境
-
+//  publicPath: process.env.NODE_ENV === 'production'
+//     ? '/data-visualization15/'  // ⚠️ 改这里！
+//     : '/',
+publicPath: process.env.NODE_ENV === 'production'
+  ? './'  // ⚠️ 改成这个！去掉斜杠
+  : '/',
   devServer: {
     proxy: {
       // 匹配所有以 "/one" 开头的前端请求（对应后端 /one 路由前缀）
