@@ -7,12 +7,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false  # 关闭默认凭证，避免权限冲突
+      
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'  # 缓存依赖，加速安装
+      
       - run: npm install
       - run: npm run build
-      - uses: peaceiris/actions-gh-pages@v4
+      
+      # 改用更稳定的部署方式
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          folder: dist  # 部署dist文件夹
+          branch: gh-pages  # 部署到gh-pages分支（GitHub Pages默认分支）
+          clean: true  # 清理旧文件
