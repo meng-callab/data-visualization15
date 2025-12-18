@@ -158,6 +158,7 @@ const initialData = [
     });
   }, 5000);
   myCharts.on('click', (params) => {
+    // eslint-disable-next-line no-console
     console.log('地图点击事件：', {
       区域: params.name,
       医保人数: params.value?.[2] || '未知',

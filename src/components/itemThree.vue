@@ -52,6 +52,7 @@ const fetchApiData = async () => {
       seriesData: apiData 
     }
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('接口请求失败：', error)
     alert('接口加载失败，自动切换为本地数据')
     return localData 
