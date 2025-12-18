@@ -228,6 +228,7 @@ export default {
               addInteractionLog(`图表${randomIndex + 1}`, '数据已更新', '模拟异步数据加载完成');
             }
           } catch (error) {
+          // eslint-disable-next-line no-console
             console.log('数据更新失败:', error);
           }
         }
@@ -270,6 +271,7 @@ export default {
           // 3. 启动自动更新
           startAutoUpdate();
         } catch (error) {
+        // eslint-disable-next-line no-console
           console.error('图表连接失败:', error);
         }
       }
