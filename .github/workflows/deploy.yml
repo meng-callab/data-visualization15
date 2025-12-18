@@ -8,20 +8,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          persist-credentials: false  # 关闭默认凭证，避免权限冲突
+          persist-credentials: false
       
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'  # 缓存依赖，加速安装
+          cache: 'npm'
       
       - run: npm install
       - run: npm run build
       
-      # 改用更稳定的部署方式
-      - name: Deploy to GitHub Pages
+      - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: dist  # 部署dist文件夹
-          branch: gh-pages  # 部署到gh-pages分支（GitHub Pages默认分支）
-          clean: true  # 清理旧文件
+          folder: dist
+          branch: gh-pages
+          clean: true
+          token: ${{ secrets.GITHUB_TOKEN }}  # 显式添加Token
